@@ -1,0 +1,60 @@
+{% extends 'mainapp/base.html' %}
+
+
+{% block content %}
+
+
+<form method="post" class="uk-card uk-card-default uk-card-body">
+<h1 class="uk-text-lead">Create a new short URL</h1>
+    {% csrf_token %}
+    <div class="uk-margin">
+<!--        <label class="uk-form-label">Enter your URL:</label>-->
+        {{ newUrlForm.full_url }}
+    </div>
+
+    <div class="uk-margin">
+<!--        <label class="uk-form-label">Enter short ID:</label>-->
+        {{ newUrlForm.ext }}
+    </div>
+
+    <button type="submit" class="uk-button uk-button-primary">Submit</button>
+</form>
+
+<div class="uk-card uk-card-default uk-card-body uk-margin-small-top">
+<h1 class="uk-text-lead">Your URLs</h1>
+<table class="uk-table uk-table-striped">
+    <thead>
+        <tr>
+            <th>full URL</th>
+            <th>short ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for urls in allUrls %}
+        <tr>
+            <td>
+                <a target="_blank" href={{ urls.full_url }}>
+                    {{ urls.full_url }}
+                </a>
+            </td>
+            <td class="shortUrl">
+                <a target="_blank" href={{ baseUrl }}{{ urls.ext }}>
+                    {{ baseUrl }}{{ urls.ext }}
+                </a>
+            </td>
+            <td><span class="uk-margin-small-right clipBoard" uk-icon="move"></span>
+                <a href="{% url 'deleteUrl' urls.ext %}">
+                    <span class="uk-margin-small-right" uk-icon="trash"></span>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<script>
+
+</script>
+
+{% endblock content %}
