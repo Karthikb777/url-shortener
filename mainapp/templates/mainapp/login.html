@@ -1,0 +1,43 @@
+{% extends 'mainapp/base.html' %}
+
+{% block content %}
+
+<div class="uk-container">
+<div class="uk-position-center">
+    <div class="uk-card uk-card-hover uk-card-body">
+    <div class="uk-margin-small">
+        <div class="uk-text-lead">
+            Login
+        </div>
+    </div>
+    <form action="#" method="post" class="uk-form-stacked">
+        {% csrf_token %}
+        <div class="uk-margin">
+        <label class="uk-form-label">Username:</label>
+            {{ form.username }}
+        </div>
+        <div class="uk-margin">
+        <label class="uk-form-label">Password:</label>
+            {{ form.password }}
+        </div>
+        <input type="submit" class="uk-button uk-button-primary" value="Login">
+    </form>
+    <div class="uk-margin-small"><div class="uk-text-meta">or</div></div>
+    <div class="uk-margin-small">
+        <div class="">Don't have an account? <a href="{% url 'signup' %}">Create one</a></div>
+    </div>
+
+
+
+    </div>
+    </div>
+    <div class="uk-margin-medium uk-position-small uk-position-bottom-center">
+
+    </div>
+    </div>
+    <script>
+        document.getElementById('id_username').className = 'uk-input uk-form-width-large'
+        document.getElementById('id_password').className = 'uk-input uk-form-width-large'
+    </script>
+
+{% endblock %}
